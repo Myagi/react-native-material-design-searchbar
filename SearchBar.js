@@ -155,6 +155,9 @@ export default class SearchBar extends React.Component {
             style={
               [styles.searchBarInput,
                 {
+                  // fixes issue on android where it gets given negative margin
+                  paddingTop: 0, 
+                  paddingBottom: 0,
                   paddingLeft: height * 0.5,
                   fontSize: height * 0.4,
                 },
@@ -162,12 +165,14 @@ export default class SearchBar extends React.Component {
             }
           />
           {this.state.isOnFocus ?
-            <TouchableOpacity onPress={this._onClose}>
-              <Icon
-                style={{paddingRight: height * 0.5 }}
-                name={iconCloseName} size={iconSize}
-                color={iconColor}
-              />
+            <TouchableOpacity onPress={this._onClose} style={{
+              // make button larger than icon, as it can be hard to press on android
+              height: height, 
+              width: height,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+              <Icon name={iconCloseName} size={iconSize} color={iconColor}/>
             </TouchableOpacity>
           : null
           }
