@@ -155,9 +155,10 @@ export default class SearchBar extends React.Component {
             style={
               [styles.searchBarInput,
                 {
-                  // fixes issue on android where it gets given negative margin
-                  paddingTop: 0, 
-                  paddingBottom: 0,
+                  // fixes issue on android where it gets given negative padding
+                  // added more padding than needed as input is hard to tap on android (found on HTC One 5.0.2)
+                  paddingTop: 10, 
+                  paddingBottom: 10,
                   paddingLeft: height * 0.5,
                   fontSize: height * 0.4,
                 },
